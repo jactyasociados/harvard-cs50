@@ -3,7 +3,6 @@
 #include <math.h>
 
 float quantity;
-int cents;
 int quarter = 25; 
 int dime = 10; 
 int nickel = 5; 
@@ -26,7 +25,7 @@ int main(void)
 
     // loop until number of coins owed condition cents owed > 0, imcrement coims from quartes to cents
     
-        while (cents >= quarter)
+    while (cents >= quarter)
     {
         cents = cents - quarter;
         quaters_count++;
