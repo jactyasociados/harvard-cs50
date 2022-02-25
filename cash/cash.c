@@ -1,46 +1,23 @@
-#include <cs50.h>
 #include <stdio.h>
 #include <math.h>
+#include <cs50.h>
 
-int main(void)
+int main()
 {
-    // asks for change owed in positive quantity
-    float quantity;
+    float dollars_owed;
+    int cents_owed;
+
     do
     {
-        quantity = get_float("Change owed: ");
+        dollars_owed = get_float("Change owed: ");
+        cents_owed = round(dollars_owed * 100);
     }
-    while (quantity <= 0);
+    while (cents_owed <= 0);
 
-    int coins = 0;
-    // converts from float to int for precision
-    int cents = round(quantity * 100);
+    int quarters = cents_owed / 25;
+    int dimes = (cents_owed % 25) / 10;
+    int nickels = ((cents_owed % 25) % 10) / 5;
+    int pennies = ((cents_owed % 25) % 10) % 5;
 
-    // loop until number of coins owed condition cents owed > 0, imcrement coims from quartes to cents
-    while (cents > 0)
-    {
-        // count cents owed in number of coins from quaters to cents
-        if (cents >= 25)
-        {
-            cents -= 25;
-            coins++;
-        }
-        else if (cents >= 10)
-        {
-            cents -= 10;
-            coins++;
-        }
-        else if (cents >= 5)
-        {
-            cents -= 5;
-            coins++;
-        }
-        else
-        {
-            cents -= 1;
-            coins++;
-        }
-    }
-    // total number of coins owed
-    printf("you are owed %i coins\n", coins);
+    printf("You are owed: %d\n", quarters + dimes + nickels + pennies);
 }
