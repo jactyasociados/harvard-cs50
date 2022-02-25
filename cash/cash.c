@@ -4,8 +4,11 @@
 
 float quantity;
 int cents;
-int quarter = 25; int dime = 10; int nickel = 5; int pennie = 1;
-int total_count, quaters_count, dimes_count, nickles_count, pennies_count;
+int quarter = 25; 
+int dime = 10; 
+int nickel = 5; 
+int pennie = 1;
+int coins, cents, quaters_count, dimes_count, nickles_count, pennies_count;
 
 int main(void)
 {
@@ -17,9 +20,9 @@ int main(void)
     }
     while (quantity < 0);
 
-    int coins = 0;
+    coins = 0;
     // converts from float to int for precision
-    int cents = round(quantity * 100);
+    cents = round(quantity * 100);
 
     // loop until number of coins owed condition cents owed > 0, imcrement coims from quartes to cents
     
