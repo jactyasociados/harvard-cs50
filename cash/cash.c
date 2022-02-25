@@ -1,30 +1,42 @@
-#include <cs50.h>
 #include <stdio.h>
+#include <cs50.h>
 #include <math.h>
 
-float quantity;
-const int quarter = 25; 
-const int dime = 10; 
-const int nickel = 5; 
-const int pennie = 1;
-int coins, cents;
-
-int main(void)
+/* Ask user for change owed as floating point, and return change as number of
+ * cents (an int), rounded correctly. Re-prompts if non-number or number less 
+ * than 0 given.
+ */
+int ask_change(void)
 {
-    // asks for change owed in positive quantity
+    float change;
     
+    printf("O hai! ");
     do
     {
-        quantity = get_float("Change owed: ");
+        printf("How much change is owed?\n");
+        change = GetFloat();
     }
-    while (quantity < 0);
+    while (change < 0);
+    
+    int cents = (int) round(change * 100);
+    
+    return cents;
+}
 
-    coins = 0;
-    // converts from float to int for precision
-    cents = (int) round(quantity * 100);
-
-    // loop until number of coins owed condition cents owed > 0, imcrement coims from quarters,
-    //dimes, pennies, nickels to cents
+/* Take number of cents required as change, and return an integer giving the
+ * minimum number of coins that can be given in change. Assumes that the only 
+ * coins available are quarters (25¢), dimes (10¢), nickels (5¢),
+ * and pennies (1¢).
+ */
+int min_coins(int cents)
+{
+    const int quarter = 25;
+    const int dime = 10;
+    const int nickel = 5;
+    const int penny = 1;
+    
+    int coins = 0;
+    
     while (cents > 0)
     {
         /* Determine the largest type of coin you can give, and deduct this from
@@ -50,6 +62,11 @@ int main(void)
         coins++;
     }
     
-    // total number of coins owed
-    printf("you are owed %i coins\n", coins);
+    return coins;
+}
+
+int main(void)
+{
+    int coins = min_coins(ask_change());
+    printf("Coins owed: %i\n", coins);
 }
