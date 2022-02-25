@@ -3,11 +3,11 @@
 #include <math.h>
 
 float quantity;
-int quarter = 25; 
-int dime = 10; 
-int nickel = 5; 
-int pennie = 1;
-int coins, cents, quaters_count, dimes_count, nickles_count, pennies_count;
+const int quarter = 25; 
+const int dime = 10; 
+const int nickel = 5; 
+const int pennie = 1;
+int coins, cents;
 
 int main(void)
 {
@@ -21,36 +21,34 @@ int main(void)
 
     coins = 0;
     // converts from float to int for precision
-    cents = round(quantity * 100);
+    cents = (int) round(quantity * 100);
 
-    // loop until number of coins owed condition cents owed > 0, imcrement coims from quartes to cents
-    
-    while (cents >= quarter)
+    // loop until number of coins owed condition cents owed > 0, imcrement coims from quarters,
+    //dimes, pennies, nickels to cents
+    while (cents > 0)
     {
-        cents = cents - quarter;
-        quaters_count++;
+        /* Determine the largest type of coin you can give, and deduct this from
+           amount of change remaining to return */
+        if (cents >= quarter)
+        {
+            cents -= quarter;
+        }
+        else if (cents >= dime)
+        {
+            cents -= dime;
+        }
+        else if (cents >= nickel)
+        {
+            cents -= nickel;
+        }
+        else if (cents >= penny)
+        {
+            cents -= penny;
+        }
+        
+        // increment the coin counter
+        coins++;
     }
-
-    while (cents >= dime)
-    {
-        cents = cents - dime;
-        dimes_count++;
-    }
-
-    while (cents >= nickel)
-    {
-        cents = cents - nickel;
-        nickles_count++;
-    }
-
-    while (cents >= pennie)
-    {
-        cents = cents - pennie;
-        pennies_count++;
-    }
-
-    // count total number of coins
-    coins = quaters_count + dimes_count + nickles_count + pennies_count;
     
     // total number of coins owed
     printf("you are owed %i coins\n", coins);
