@@ -80,7 +80,7 @@ bool only_digits(char number[])
         //if (number[i] > '9' || number[i] < '0')
         if (!isdigit(number[i]))
         {
-          return false;
+            return false;
         }
     }
     return true;
