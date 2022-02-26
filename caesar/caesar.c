@@ -26,7 +26,7 @@ int main(int argc, string argv[])
     }
 
     // if no arguments entered or key less or equal 0 print usage or argument not a number
-    if (argc != 2 || key <= 0 || only_digits(argv[1]))
+    if (argc != 2 || key <= 0 || !only_digits(argv[1]))
     {
         printf("Usage: ./caesar key\n");
         return 1;
