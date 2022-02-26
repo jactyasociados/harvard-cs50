@@ -37,15 +37,20 @@ int main(void)
 
 int get_cents(void)
 {
-    // TODO
-    int cents;
+    float change;
+  
     do
     {
-        quantity = get_int("Change owed in cents: ");
+        printf("How much change is owed?\n");
+        change = get_float();
     }
-    while (cents <= 0);
+    while (change < 0);
+    
+    int cents = (int) round(change * 100);
+    
     return cents;
 }
+
 
 int calculate_quarters(int cents)
 {
