@@ -37,16 +37,12 @@ int main(void)
 
 int get_cents(void)
 {
-    float change;
-  
+    
     do
     {
-        printf("How much change is owed?\n");
-        change = get_float();
+        cents = get_int("How many cents are owed: ");
     }
-    while (change < 0);
-    
-    int cents = (int) round(change * 100);
+    while (cents < 0);
     
     return cents;
 }
